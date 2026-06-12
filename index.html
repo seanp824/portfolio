@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -17,69 +17,9 @@
 
     <link rel="stylesheet" href="styles.css" />
 
-    <title>Sean Harbison — Product-minded builder</title>
+    <title>Sean Harbison â€” Product-minded builder</title>
   </head>
   <body>
-    <div class="intro" id="intro">
-      <div class="intro-fit">
-        <div class="intro-camera">
-          <div class="intro-scene">
-            <div class="intro-wall"></div>
-            <div class="intro-floor"></div>
-            <div class="intro-window">
-              <span class="intro-moon"></span>
-            </div>
-            <div class="intro-moonpool"></div>
-            <div class="intro-desk-top"></div>
-            <div class="intro-desk-edge"></div>
-            <div class="intro-desk-leg intro-desk-leg-left"></div>
-            <div class="intro-desk-leg intro-desk-leg-right"></div>
-            <div class="intro-keyboard"></div>
-            <div class="intro-mug"><span></span></div>
-            <div class="intro-monitor">
-              <div class="intro-screen">
-                <div class="intro-screen-glow"></div>
-                <div class="intro-screen-nav">
-                  <span>S.H<i>.</i></span>
-                  <span class="intro-screen-navlinks">
-                    <span class="intro-screen-navlink"></span>
-                    <span class="intro-screen-navlink"></span>
-                    <span class="intro-screen-pill"></span>
-                  </span>
-                </div>
-                <img src="images/headshot.jpg" alt="" />
-                <div class="intro-screen-name">
-                  <span>Sean</span>
-                  <span class="intro-screen-accent">Harbison</span>
-                </div>
-                <div class="intro-screen-foot">
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-              <div class="intro-stand"></div>
-              <div class="intro-base"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="intro-skip" type="button">Skip intro</button>
-    </div>
-    <script>
-      (function () {
-        var intro = document.getElementById("intro");
-        var reduce = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-        var played = false;
-        try {
-          played = sessionStorage.getItem("introPlayed") === "1";
-        } catch (e) {}
-        if (reduce || played) intro.remove();
-      })();
-    </script>
-    <noscript><style>.intro { display: none; }</style></noscript>
-
     <div class="progress" aria-hidden="true"><span></span></div>
 
     <header class="nav" data-nav>
@@ -191,19 +131,19 @@
             </div>
 
             <div class="study-meta reveal">
-              <span>TypeScript · Next.js · React</span>
+              <span>TypeScript Â· Next.js Â· React</span>
               <span class="study-meta-links">
                 <a
                   href="https://algorithmvisualization.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >Live site ↗</a
+                  >Live site â†—</a
                 >
                 <a
                   href="https://github.com/seanp824/Algorithm-Visualizer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >GitHub ↗</a
+                  >GitHub â†—</a
                 >
               </span>
             </div>
@@ -262,12 +202,12 @@
             </div>
 
             <div class="study-meta reveal">
-              <span>React · Canvas animation</span>
+              <span>React Â· Canvas animation</span>
               <a
                 href="https://playforgeplaybook.lovable.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Live site ↗</a
+                >Live site â†—</a
               >
             </div>
           </div>
@@ -326,12 +266,12 @@
             </div>
 
             <div class="study-meta reveal">
-              <span>Python · OpenCV</span>
+              <span>Python Â· OpenCV</span>
               <a
                 href="https://github.com/seanp824/Rubik-s-Cube-Solver"
                 target="_blank"
                 rel="noopener noreferrer"
-                >GitHub ↗</a
+                >GitHub â†—</a
               >
             </div>
           </div>
@@ -345,19 +285,19 @@
               href="https://www.youtube.com/watch?v=pRQLgmHiOZQ"
               target="_blank"
               rel="noopener noreferrer"
-              >Parking Spot Detector ↗</a
+              >Parking Spot Detector â†—</a
             >
             <a
               href="https://github.com/seanp824/CourseScheduler"
               target="_blank"
               rel="noopener noreferrer"
-              >Course Scheduler ↗</a
+              >Course Scheduler â†—</a
             >
             <a
               href="https://github.com/seanp824/S-P-Predictor"
               target="_blank"
               rel="noopener noreferrer"
-              >S&amp;P 500 Predictor ↗</a
+              >S&amp;P 500 Predictor â†—</a
             >
           </nav>
         </div>
@@ -402,20 +342,20 @@
             href="https://github.com/seanp824"
             target="_blank"
             rel="noopener noreferrer"
-            >GitHub ↗</a
+            >GitHub â†—</a
           >
           <a
             href="http://linkedin.com/in/seanpharbison"
             target="_blank"
             rel="noopener noreferrer"
-            >LinkedIn ↗</a
+            >LinkedIn â†—</a
           >
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <span>Sean Harbison · Los Angeles</span>
+      <span>Sean Harbison Â· Los Angeles</span>
     </footer>
 
     <script src="script.js" defer></script>

@@ -10,61 +10,6 @@
 
   document.body.classList.add("is-ready");
 
-  /* ---------- intro sequence ---------- */
-  /* The overlay markup lives in index.html; an inline script there
-     already removed it for repeat visits and reduced motion. Here we
-     just lock scroll while it plays and tear it down when it ends. */
-
-  const intro = document.getElementById("intro");
-
-  if (intro) {
-    document.body.classList.add("intro-lock");
-    // The zoom hands off to the hero, so the page must be at the top.
-    window.scrollTo(0, 0);
-
-    const finishIntro = () => {
-      if (!intro.isConnected) return;
-      intro.remove();
-      document.body.classList.remove("intro-lock");
-      try {
-        sessionStorage.setItem("introPlayed", "1");
-      } catch (e) {
-        /* private browsing: the intro will just replay next visit */
-      }
-    };
-
-    intro.addEventListener("animationend", (e) => {
-      if (e.target === intro) finishIntro();
-    });
-
-    intro.querySelector(".intro-skip").addEventListener("click", finishIntro);
-
-    document.addEventListener("keydown", function onEsc(e) {
-      if (e.key === "Escape") {
-        finishIntro();
-        document.removeEventListener("keydown", onEsc);
-      }
-    });
-
-    // Dev helper: ?introat=2500 freezes the intro at that millisecond
-    // so individual frames can be inspected and tuned.
-    const scrubMs = Number(
-      new URLSearchParams(location.search).get("introat")
-    );
-    if (scrubMs > 0) {
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => {
-          document.getAnimations().forEach((a) => {
-            if (intro.contains(a.effect.target)) {
-              a.pause();
-              a.currentTime = scrubMs;
-            }
-          });
-        })
-      );
-    }
-  }
-
   /* ---------- reveal on scroll ---------- */
 
   const revealTargets = document.querySelectorAll(".reveal, .reveal-media");
