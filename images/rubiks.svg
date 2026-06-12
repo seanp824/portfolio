@@ -1,0 +1,79 @@
+<svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Isometric illustration of a scrambled Rubik's cube">
+  <defs>
+    <linearGradient id="ice" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef3f7"/>
+      <stop offset="0.55" stop-color="#e3ecf3"/>
+      <stop offset="1" stop-color="#d8e5ef"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#ice)"/>
+  <rect width="1280" height="720" fill="url(#halo)"/>
+
+  <!-- shadow -->
+  <ellipse cx="640" cy="632" rx="250" ry="34" fill="#9db4c6" opacity="0.45" filter="url(#soft)"/>
+
+  <!-- cube body -->
+  <g stroke="none">
+    <!-- top face base -->
+    <path d="M640 120 L847.84 240 L640 360 L432.16 240 Z" fill="#14161c"/>
+    <!-- left face base -->
+    <path d="M432.16 240 L640 360 L640 600 L432.16 480 Z" fill="#0e1015"/>
+    <!-- right face base -->
+    <path d="M640 360 L847.84 240 L847.84 480 L640 600 Z" fill="#101218"/>
+  </g>
+
+  <!-- top face stickers: u along (69.28,40), v along (-69.28,40), origin 640,120 -->
+  <g transform="matrix(69.28 40 -69.28 40 640 120)">
+    <rect x="0.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#ffd500"/>
+    <rect x="1.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#0051ba"/>
+    <rect x="2.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#ffd500"/>
+    <rect x="0.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#c41e3a"/>
+    <rect x="1.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#ffd500"/>
+    <rect x="2.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#f4f6f4"/>
+    <rect x="0.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#009e60"/>
+    <rect x="1.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#ffd500"/>
+    <rect x="2.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#ff5800"/>
+  </g>
+
+  <!-- left face stickers: u along (69.28,40), v along (0,80), origin 432.16,240 -->
+  <g transform="matrix(69.28 40 0 80 432.16 240)">
+    <rect x="0.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#c41e3a"/>
+    <rect x="1.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#f4f6f4"/>
+    <rect x="2.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#c41e3a"/>
+    <rect x="0.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#0051ba"/>
+    <rect x="1.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#c41e3a"/>
+    <rect x="2.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#ffd500"/>
+    <rect x="0.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#c41e3a"/>
+    <rect x="1.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#ff5800"/>
+    <rect x="2.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#009e60"/>
+  </g>
+
+  <!-- right face stickers: u along (69.28,-40), v along (0,80), origin 640,360 -->
+  <g transform="matrix(69.28 -40 0 80 640 360)">
+    <rect x="0.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#0051ba"/>
+    <rect x="1.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#ff5800"/>
+    <rect x="2.07" y="0.07" width="0.86" height="0.86" rx="0.1" fill="#0051ba"/>
+    <rect x="0.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#0051ba"/>
+    <rect x="1.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#0051ba"/>
+    <rect x="2.07" y="1.07" width="0.86" height="0.86" rx="0.1" fill="#009e60"/>
+    <rect x="0.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#f4f6f4"/>
+    <rect x="1.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#0051ba"/>
+    <rect x="2.07" y="2.07" width="0.86" height="0.86" rx="0.1" fill="#c41e3a"/>
+  </g>
+
+  <!-- subtle lighting: darken left face, lighten top -->
+  <path d="M640 120 L847.84 240 L640 360 L432.16 240 Z" fill="#ffffff" opacity="0.07"/>
+  <path d="M432.16 240 L640 360 L640 600 L432.16 480 Z" fill="#000000" opacity="0.18"/>
+  <path d="M640 360 L847.84 240 L847.84 480 L640 600 Z" fill="#000000" opacity="0.08"/>
+
+  <!-- solution notation, set quiet -->
+  <text x="640" y="676" text-anchor="middle" font-family="ui-monospace, 'Cascadia Mono', Consolas, monospace" font-size="22" fill="#7d93a8" letter-spacing="6">F R U R' U' F'</text>
+</svg>

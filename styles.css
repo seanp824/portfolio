@@ -1,0 +1,1248 @@
+/* ============================================================
+   Sean Harbison — portfolio
+   Light, atmospheric, architectural. One family, committed.
+   ============================================================ */
+
+:root {
+  --canvas: oklch(97.5% 0.006 230);
+  --canvas-deep: oklch(94% 0.01 230);
+  --ink: oklch(22% 0.015 240);
+  --ink-soft: oklch(45% 0.012 240);
+  --ink-faint: oklch(72% 0.012 235);
+  --accent: oklch(55% 0.16 240);
+  --accent-deep: oklch(38% 0.11 245);
+  --hairline: oklch(88% 0.008 230);
+
+  --font: "Schibsted Grotesk", system-ui, -apple-system, sans-serif;
+
+  --text-base: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --text-deck: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  --text-heading: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  --text-hero: clamp(3.25rem, 1rem + 11.5vw, 10.5rem);
+  --text-number: clamp(4.5rem, 3rem + 7vw, 9rem);
+
+  --space-section: clamp(6rem, 4.5rem + 8vw, 13rem);
+  --gutter: clamp(1.25rem, 0.75rem + 3vw, 4rem);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-duration: 850ms;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--canvas);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--canvas);
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- scroll progress ---------- */
+
+.progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem var(--gutter);
+  border-bottom: 1px solid transparent;
+  transition: border-color 400ms ease, background-color 400ms ease,
+    backdrop-filter 400ms ease;
+}
+
+.nav.is-scrolled {
+  background: oklch(97.5% 0.006 230 / 0.82);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--hairline);
+}
+
+.wordmark {
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.wordmark-dot {
+  color: var(--accent);
+}
+
+.nav nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.nav nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color 200ms ease;
+}
+
+.nav nav a:hover {
+  color: var(--ink);
+}
+
+.nav-cta {
+  color: var(--canvas) !important;
+  background: var(--ink);
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  transition: background-color 250ms ease, transform 250ms var(--ease-out-expo);
+}
+
+.nav-cta:hover {
+  background: var(--accent-deep);
+  transform: translateY(-1px);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 var(--gutter) clamp(2.5rem, 5vh, 4.5rem);
+  isolation: isolate;
+}
+
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.glow-a {
+  width: 55vw;
+  height: 55vw;
+  top: -18vw;
+  right: -12vw;
+  background: oklch(90% 0.045 235 / 0.9);
+}
+
+.glow-b {
+  width: 40vw;
+  height: 40vw;
+  bottom: -10vw;
+  left: -14vw;
+  background: oklch(92% 0.03 210 / 0.8);
+}
+
+.glow-cursor {
+  width: 34rem;
+  height: 34rem;
+  top: 0;
+  left: 0;
+  background: oklch(88% 0.07 240 / 0.55);
+  opacity: 0;
+  transition: opacity 600ms ease;
+  will-change: transform;
+}
+
+body.has-pointer .glow-cursor {
+  opacity: 1;
+}
+
+.hero-stage {
+  position: relative;
+  margin-bottom: clamp(2rem, 6vh, 5rem);
+}
+
+.hero-portrait {
+  position: absolute;
+  left: 39%;
+  top: 50%;
+  width: clamp(10rem, 17vw, 15rem);
+  margin: 0;
+  transform: translate(-50%, -54%) rotate(-2deg);
+  will-change: transform;
+}
+
+/* warm halo: the sunset bleeding into the ice */
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: -28%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    oklch(85% 0.09 65 / 0.55),
+    oklch(85% 0.09 65 / 0)
+  );
+}
+
+.hero-portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px oklch(40% 0.03 240 / 0.12),
+    0 18px 40px -12px oklch(40% 0.05 240 / 0.35);
+}
+
+.hero-name {
+  position: relative;
+  font-size: var(--text-hero);
+  font-weight: 850;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-line {
+  display: block;
+  will-change: transform;
+}
+
+.hero-line-indent {
+  align-self: flex-end;
+  color: var(--accent);
+}
+
+.hero-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.5rem;
+}
+
+.hero-positioning {
+  max-width: 34ch;
+  font-size: var(--text-deck);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.hero-positioning em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-scrollcue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+
+.scrollcue-line {
+  width: 1px;
+  height: 3.5rem;
+  background: var(--ink-faint);
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollcue-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  animation: scrollcue 2.2s var(--ease-out-expo) infinite;
+}
+
+@keyframes scrollcue {
+  0% {
+    transform: translateY(-100%);
+  }
+  55%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* ---------- work ---------- */
+
+.work {
+  background: var(--canvas-deep);
+  padding: var(--space-section) var(--gutter);
+}
+
+.work-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  margin-bottom: clamp(4rem, 8vw, 8rem);
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 1.25rem;
+}
+
+.work-header h2 {
+  font-size: var(--text-heading);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.work-header p {
+  color: var(--ink-soft);
+}
+
+.study {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(0, 3.2fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+}
+
+.study + .study {
+  margin-top: var(--space-section);
+}
+
+.study-rail {
+  position: relative;
+}
+
+.study-number {
+  position: sticky;
+  top: 5.5rem;
+  display: block;
+  font-size: var(--text-number);
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: oklch(86% 0.025 235);
+}
+
+.study-body {
+  max-width: 64rem;
+}
+
+.study-head h3 {
+  font-size: var(--text-heading);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.study-deck {
+  margin-top: 0.75rem;
+  font-size: var(--text-deck);
+  font-weight: 450;
+  color: var(--ink-soft);
+  letter-spacing: -0.01em;
+  max-width: 36ch;
+}
+
+.study-media {
+  position: relative;
+  display: block;
+  margin: clamp(2rem, 4vw, 3.5rem) 0;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.study-media img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out-expo);
+}
+
+.study-media:hover img {
+  transform: scale(1.025);
+}
+
+.study-media-tag {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: var(--ink);
+  color: var(--canvas);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 350ms ease, transform 350ms var(--ease-out-expo);
+}
+
+.study-media:hover .study-media-tag,
+.study-media:focus-visible .study-media-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.study-narrative {
+  display: grid;
+  gap: 1.75rem;
+  max-width: 68ch;
+}
+
+.study-narrative strong {
+  font-weight: 750;
+}
+
+.study-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.95rem;
+}
+
+.study-meta > span:first-child {
+  color: var(--ink-soft);
+}
+
+.study-meta-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.work-archive {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  margin-top: var(--space-section);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.95rem;
+}
+
+.work-archive > span {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.work-archive nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+}
+
+.work-archive a {
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.work-archive a:hover {
+  color: var(--accent);
+}
+
+.study-meta a,
+.contact-links a {
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  background-position: left bottom;
+  transition: background-size 350ms var(--ease-out-expo), color 200ms ease;
+}
+
+.study-meta a:hover,
+.contact-links a:hover {
+  background-size: 100% 1.5px;
+  color: var(--accent-deep);
+}
+
+/* ---------- about ---------- */
+
+.about {
+  padding: var(--space-section) var(--gutter);
+}
+
+.about-inner {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(0, 3.2fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+}
+
+.about h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  position: sticky;
+  top: 5.5rem;
+  align-self: start;
+}
+
+.about-prose {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 62ch;
+  font-size: var(--text-deck);
+  font-weight: 450;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- contact ---------- */
+
+.contact {
+  background: var(--ink);
+  color: var(--canvas);
+  padding: var(--space-section) var(--gutter);
+  text-align: left;
+}
+
+.contact-invite {
+  font-size: var(--text-hero);
+  font-weight: 850;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.contact-period {
+  color: var(--accent);
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: var(--text-deck);
+  font-weight: 600;
+  color: var(--canvas);
+  text-decoration: none;
+  border-bottom: 2px solid oklch(55% 0.16 240 / 0.6);
+  transition: border-color 250ms ease, color 250ms ease;
+}
+
+.contact-email:hover {
+  color: oklch(80% 0.08 240);
+  border-bottom-color: var(--accent);
+}
+
+.contact-links {
+  display: flex;
+  gap: 2rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.contact-links a {
+  color: oklch(75% 0.06 240);
+}
+
+.contact-links a:hover {
+  color: var(--canvas);
+}
+
+/* ---------- footer ---------- */
+
+.footer {
+  background: var(--ink);
+  color: oklch(60% 0.02 240);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  padding: 1.5rem var(--gutter) 2rem;
+  font-size: 0.85rem;
+  border-top: 1px solid oklch(32% 0.02 240);
+}
+
+/* ---------- intro: first-person walk to the desk ----------
+   Timeline (4.4s dolly + 0.6s fade, total ~4.8s):
+   0%   - 55%  walk toward the desk, standing eye height, head bob
+   55%  - 82%  stop, sit down (eye level drops, chair scoots in)
+   82%  - 100% lean in and zoom through the screen
+   The overlay then crossfades to the real page underneath. */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: oklch(15% 0.014 245);
+  overflow: hidden;
+  perspective: 1100px;
+  animation: introFade 550ms ease 4.25s forwards;
+}
+
+@keyframes introFade {
+  to {
+    opacity: 0;
+  }
+}
+
+.intro-fit,
+.intro-camera,
+.intro-scene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.intro-camera {
+  animation: introBob 4.4s linear forwards;
+}
+
+.intro-scene {
+  animation: introDolly 4.4s forwards;
+}
+
+/* standing eye height pushes the desk below center (+7vh);
+   sitting brings it up to dead center */
+@keyframes introBob {
+  0% {
+    transform: translateY(7vh);
+  }
+  10% {
+    transform: translateY(5.7vh);
+  }
+  20% {
+    transform: translateY(7vh);
+  }
+  30% {
+    transform: translateY(5.7vh);
+  }
+  40% {
+    transform: translateY(7vh);
+  }
+  50% {
+    transform: translateY(6vh);
+  }
+  56% {
+    transform: translateY(6.5vh);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  70% {
+    transform: translateY(-0.7vh);
+  }
+  78% {
+    transform: translateY(0.25vh);
+  }
+  84%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes introDolly {
+  0% {
+    transform: translateZ(-1500px);
+    animation-timing-function: linear;
+  }
+  55% {
+    transform: translateZ(-380px);
+    animation-timing-function: ease-in-out;
+  }
+  72% {
+    transform: translateZ(-355px);
+    animation-timing-function: ease-in-out;
+  }
+  82% {
+    transform: translateZ(-320px);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.25);
+  }
+  100% {
+    transform: translateZ(880px);
+  }
+}
+
+/* room */
+
+.intro-wall {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4200px;
+  height: 2600px;
+  transform: translate(-50%, -50%) translateZ(-430px);
+  /* the screen's backlight: a tight hot core behind the monitor,
+     a wider cool spill, then darkness */
+  background: radial-gradient(
+      ellipse 16% 14% at 50% 47.5%,
+      oklch(72% 0.05 235 / 0.55),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 34% 30% at 50% 47.5%,
+      oklch(48% 0.04 238 / 0.45),
+      transparent 75%
+    ),
+    linear-gradient(
+      oklch(21% 0.016 242),
+      oklch(16% 0.014 245) 62%,
+      oklch(12% 0.012 248)
+    );
+}
+
+.intro-floor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4200px;
+  height: 3000px;
+  transform: translate(-50%, -50%) translateY(430px) rotateX(90deg);
+  background: radial-gradient(
+      ellipse 30% 22% at 50% 16%,
+      oklch(30% 0.022 240 / 0.7),
+      transparent 70%
+    ),
+    linear-gradient(oklch(13% 0.012 246), oklch(10% 0.01 248));
+}
+
+/* window + moon: the room's second, colder light source */
+
+.intro-window {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 330px;
+  height: 430px;
+  transform: translate(-50%, -50%) translate3d(-560px, -150px, -424px);
+  border: 14px solid oklch(9% 0.008 250);
+  border-radius: 6px;
+  /* night sky with a halo where the moon hangs, and a few stars */
+  background: radial-gradient(
+      circle 140px at 64% 24%,
+      oklch(42% 0.035 260 / 0.4),
+      transparent
+    ),
+    radial-gradient(circle 1.5px at 18% 14%, oklch(92% 0.01 255), transparent 60%),
+    radial-gradient(circle 1px at 34% 38%, oklch(85% 0.01 255), transparent 60%),
+    radial-gradient(circle 1.5px at 80% 52%, oklch(90% 0.01 255), transparent 60%),
+    radial-gradient(circle 1px at 12% 62%, oklch(82% 0.01 255), transparent 60%),
+    radial-gradient(circle 1px at 55% 8%, oklch(88% 0.01 255), transparent 60%),
+    radial-gradient(circle 1.5px at 88% 20%, oklch(90% 0.01 255), transparent 60%),
+    linear-gradient(
+      oklch(21% 0.035 265),
+      oklch(14% 0.025 260) 60%,
+      oklch(10% 0.018 255)
+    );
+  /* moonlight washing the wall around the frame */
+  box-shadow: 0 0 110px 24px oklch(82% 0.03 255 / 0.13),
+    inset 0 0 50px oklch(60% 0.04 260 / 0.2);
+}
+
+/* mullions */
+.intro-window::before,
+.intro-window::after {
+  content: "";
+  position: absolute;
+  background: oklch(9% 0.008 250);
+}
+
+.intro-window::before {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 10px;
+  transform: translateX(-50%);
+}
+
+.intro-window::after {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 10px;
+  transform: translateY(-50%);
+}
+
+.intro-moon {
+  position: absolute;
+  top: 13%;
+  left: 52%;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 34%,
+    oklch(99% 0.004 250),
+    oklch(88% 0.015 255) 70%,
+    oklch(82% 0.02 258)
+  );
+  box-shadow: 0 0 36px 8px oklch(92% 0.015 255 / 0.55),
+    0 0 110px 36px oklch(85% 0.025 258 / 0.28);
+}
+
+/* slanted moonlight falling across the floor */
+.intro-moonpool {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 380px;
+  height: 560px;
+  transform: translate(-50%, -50%) translate3d(-540px, 428px, 40px)
+    rotateX(90deg) skewX(-16deg);
+  background: linear-gradient(
+    105deg,
+    oklch(78% 0.025 256 / 0.15),
+    oklch(78% 0.025 256 / 0.05) 60%,
+    transparent
+  );
+  filter: blur(5px);
+}
+
+/* desk */
+
+.intro-desk-top {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1240px;
+  height: 560px;
+  transform: translate(-50%, -50%) translateY(242px) rotateX(90deg);
+  border-radius: 14px;
+  /* lit where the screen light lands, dark at the edges
+     (local y=0 is the far edge, the monitor sits around y 46%) */
+  background: radial-gradient(
+      ellipse 46% 50% at 50% 44%,
+      oklch(56% 0.03 236 / 0.9),
+      oklch(36% 0.022 240 / 0.6) 55%,
+      transparent 80%
+    ),
+    linear-gradient(oklch(24% 0.014 242), oklch(19% 0.013 244));
+}
+
+.intro-desk-edge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1240px;
+  height: 16px;
+  transform: translate(-50%, -50%) translateY(250px) translateZ(280px);
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(oklch(30% 0.015 240), oklch(18% 0.012 244));
+}
+
+.intro-desk-leg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 180px;
+  background: linear-gradient(oklch(22% 0.014 242), oklch(13% 0.012 246));
+  border-radius: 0 0 3px 3px;
+}
+
+.intro-desk-leg-left {
+  transform: translate(-50%, -50%) translate3d(-580px, 340px, 230px);
+}
+
+.intro-desk-leg-right {
+  transform: translate(-50%, -50%) translate3d(580px, 340px, 230px);
+}
+
+.intro-keyboard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 380px;
+  height: 130px;
+  transform: translate(-50%, -50%) translateY(240px) translateZ(150px)
+    rotateX(90deg);
+  border-radius: 10px;
+  /* catches the screen light on its far side */
+  background: linear-gradient(
+    oklch(48% 0.025 236),
+    oklch(30% 0.016 240) 70%,
+    oklch(26% 0.015 242)
+  );
+  box-shadow: inset 0 0 0 2px oklch(22% 0.014 242 / 0.8);
+}
+
+.intro-mug {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 84px;
+  transform: translate(-50%, -50%) translate3d(430px, 200px, 110px);
+  border-radius: 8px 8px 12px 12px;
+  /* the one warm object on the desk, dimmed for the dark room,
+     with screen light grazing its monitor-facing side */
+  background: linear-gradient(
+    100deg,
+    oklch(52% 0.1 50),
+    oklch(34% 0.08 45) 65%
+  );
+}
+
+.intro-mug span {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 56px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: oklch(20% 0.04 45);
+}
+
+/* monitor */
+
+.intro-monitor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+}
+
+.intro-screen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 780px;
+  height: 470px;
+  transform: translate(-50%, -50%) translateY(-46px);
+  overflow: hidden;
+  border-radius: 14px;
+  border: 11px solid oklch(14% 0.01 244);
+  background: linear-gradient(135deg, oklch(97.5% 0.006 230), oklch(93% 0.018 225));
+  /* the screen is the room's light source */
+  box-shadow: 0 0 90px 18px oklch(75% 0.06 235 / 0.3),
+    0 0 220px 60px oklch(60% 0.05 238 / 0.22),
+    0 30px 70px -20px oklch(5% 0.01 245 / 0.6);
+}
+
+.intro-screen-glow {
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  width: 70%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    oklch(90% 0.06 235 / 0.8),
+    transparent
+  );
+}
+
+.intro-screen-nav {
+  position: absolute;
+  top: 22px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.intro-screen-nav i {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.intro-screen-navlinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* the Work / About links, skeletonized */
+.intro-screen-navlink {
+  width: 32px;
+  height: 7px;
+  border-radius: 4px;
+  background: oklch(72% 0.012 235);
+}
+
+.intro-screen-pill {
+  width: 92px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--ink);
+}
+
+.intro-screen img {
+  position: absolute;
+  bottom: 104px;
+  left: 39%;
+  width: 104px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 7px;
+  /* nested between the two name lines, matching the real hero */
+  transform: translateX(-50%) rotate(-2deg);
+  box-shadow: 0 10px 24px -8px oklch(40% 0.05 240 / 0.4);
+}
+
+.intro-screen-name {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 110px;
+  display: flex;
+  flex-direction: column;
+  font-size: 64px;
+  font-weight: 850;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.intro-screen-accent {
+  align-self: flex-end;
+  color: var(--accent);
+}
+
+/* the hero's foot: hairline and a skeleton of the positioning line */
+.intro-screen-foot {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  padding-top: 11px;
+  border-top: 1px solid oklch(88% 0.008 230);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.intro-screen-foot span {
+  height: 7px;
+  border-radius: 4px;
+  background: oklch(78% 0.012 235);
+}
+
+.intro-screen-foot span:first-child {
+  width: 38%;
+}
+
+.intro-screen-foot span:last-child {
+  width: 28%;
+  background: oklch(84% 0.01 233);
+}
+
+.intro-stand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 74px;
+  height: 74px;
+  transform: translate(-50%, -50%) translateY(220px) translateZ(-26px);
+  background: linear-gradient(oklch(20% 0.012 242), oklch(12% 0.01 246));
+  border-radius: 0 0 10px 10px;
+}
+
+.intro-base {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 240px;
+  height: 120px;
+  transform: translate(-50%, -50%) translateY(243px) translateZ(-20px)
+    rotateX(90deg);
+  border-radius: 50%;
+  background: oklch(15% 0.012 244);
+}
+
+.intro-skip {
+  position: absolute;
+  right: clamp(1.25rem, 3vw, 2.5rem);
+  bottom: clamp(1.25rem, 3vw, 2.5rem);
+  z-index: 2;
+  padding: 0.55rem 1.2rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: oklch(72% 0.02 238);
+  background: oklch(20% 0.015 242 / 0.6);
+  border: 1px solid oklch(38% 0.02 240 / 0.6);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.intro-skip:hover {
+  color: oklch(95% 0.01 235);
+  border-color: oklch(60% 0.03 238);
+}
+
+body.intro-lock {
+  overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+  .intro-fit {
+    transform: scale(0.72);
+  }
+}
+
+@media (max-width: 600px) {
+  .intro-fit {
+    transform: scale(0.46);
+  }
+}
+
+/* ---------- reveal animations (JS adds .is-ready) ---------- */
+
+body.is-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--reveal-duration) ease,
+    transform var(--reveal-duration) var(--ease-out-expo);
+  transition-delay: var(--stagger, 0ms);
+}
+
+body.is-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.is-ready .reveal-media {
+  clip-path: inset(12% 6% 12% 6% round 6px);
+  opacity: 0;
+  transition: clip-path 1100ms var(--ease-out-expo),
+    opacity 700ms ease;
+}
+
+body.is-ready .reveal-media.is-visible {
+  clip-path: inset(0 0 0 0 round 6px);
+  opacity: 1;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 760px) {
+  .study,
+  .about-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .study-number {
+    position: static;
+    font-size: clamp(3rem, 12vw, 4.5rem);
+  }
+
+  .about h2 {
+    position: static;
+  }
+
+  .hero-foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-scrollcue {
+    display: none;
+  }
+
+  .hero-portrait {
+    width: clamp(8rem, 34vw, 10.5rem);
+  }
+
+  .nav nav a:not(.nav-cta) {
+    display: none;
+  }
+
+  .study-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .intro {
+    display: none;
+  }
+
+  body.is-ready .reveal,
+  body.is-ready .reveal-media {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+
+  .scrollcue-line::after {
+    animation: none;
+  }
+
+  .hero-line,
+  .glow-cursor {
+    transform: none !important;
+  }
+
+  .study-media img,
+  .study-media:hover img {
+    transition: none;
+    transform: none;
+  }
+}

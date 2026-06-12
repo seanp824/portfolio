@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sean Harbison. Product-minded builder studying Computer Science and Business Administration at USC. Case studies in algorithm visualization, playbook design, and a from-scratch Rubik's cube solver."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Sean Harbison — Product-minded builder</title>
+  </head>
+  <body>
+    <div class="intro" id="intro">
+      <div class="intro-fit">
+        <div class="intro-camera">
+          <div class="intro-scene">
+            <div class="intro-wall"></div>
+            <div class="intro-floor"></div>
+            <div class="intro-window">
+              <span class="intro-moon"></span>
+            </div>
+            <div class="intro-moonpool"></div>
+            <div class="intro-desk-top"></div>
+            <div class="intro-desk-edge"></div>
+            <div class="intro-desk-leg intro-desk-leg-left"></div>
+            <div class="intro-desk-leg intro-desk-leg-right"></div>
+            <div class="intro-keyboard"></div>
+            <div class="intro-mug"><span></span></div>
+            <div class="intro-monitor">
+              <div class="intro-screen">
+                <div class="intro-screen-glow"></div>
+                <div class="intro-screen-nav">
+                  <span>S.H<i>.</i></span>
+                  <span class="intro-screen-navlinks">
+                    <span class="intro-screen-navlink"></span>
+                    <span class="intro-screen-navlink"></span>
+                    <span class="intro-screen-pill"></span>
+                  </span>
+                </div>
+                <img src="images/headshot.jpg" alt="" />
+                <div class="intro-screen-name">
+                  <span>Sean</span>
+                  <span class="intro-screen-accent">Harbison</span>
+                </div>
+                <div class="intro-screen-foot">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="intro-stand"></div>
+              <div class="intro-base"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="intro-skip" type="button">Skip intro</button>
+    </div>
+    <script>
+      (function () {
+        var intro = document.getElementById("intro");
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        var played = false;
+        try {
+          played = sessionStorage.getItem("introPlayed") === "1";
+        } catch (e) {}
+        if (reduce || played) intro.remove();
+      })();
+    </script>
+    <noscript><style>.intro { display: none; }</style></noscript>
+
+    <div class="progress" aria-hidden="true"><span></span></div>
+
+    <header class="nav" data-nav>
+      <a class="wordmark" href="#top">S.H<span class="wordmark-dot">.</span></a>
+      <nav aria-label="Main">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="mailto:seanpharbison@gmail.com">Get in touch</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-heading" data-hero>
+        <div class="hero-atmosphere" aria-hidden="true">
+          <div class="glow glow-a"></div>
+          <div class="glow glow-b"></div>
+          <div class="glow glow-cursor" data-cursor-glow></div>
+        </div>
+
+        <div class="hero-stage">
+          <figure class="hero-portrait" data-portrait>
+            <img
+              src="images/headshot.jpg"
+              alt="Sean Harbison on the beach at golden hour"
+              width="570"
+              height="713"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </figure>
+
+          <h1 id="hero-heading" class="hero-name">
+            <span class="hero-line" data-drift="-1">Sean</span>
+            <span class="hero-line hero-line-indent" data-drift="1"
+              >Harbison</span
+            >
+          </h1>
+        </div>
+
+        <div class="hero-foot">
+          <p class="hero-positioning">
+            I build products end to end, and I care about the
+            <em>why</em> before the build. Computer Science &amp; Business
+            Administration at USC.
+          </p>
+          <div class="hero-scrollcue" aria-hidden="true">
+            <span class="scrollcue-line"></span>
+            <span>Scroll</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section id="work" class="work" aria-labelledby="work-heading">
+        <div class="work-header reveal">
+          <h2 id="work-heading">Selected work</h2>
+          <p>Three case studies, built and shipped.</p>
+        </div>
+
+        <!-- 01 -->
+        <article class="study" aria-labelledby="study-1-title">
+          <div class="study-rail">
+            <span class="study-number" aria-hidden="true">01</span>
+          </div>
+          <div class="study-body">
+            <header class="study-head reveal">
+              <h3 id="study-1-title">Algorithm Visualizer</h3>
+              <p class="study-deck">
+                Making invisible computer science visible, in the browser.
+              </p>
+            </header>
+
+            <a
+              class="study-media reveal-media"
+              href="https://algorithmvisualization.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="images/algoviz.png"
+                alt="Pathfinding grid in the Algorithm Visualizer, with start and end nodes placed and Dijkstra's algorithm selected"
+                loading="lazy"
+                width="1280"
+                height="800"
+              />
+              <span class="study-media-tag">Try it live</span>
+            </a>
+
+            <div class="study-narrative">
+              <p class="reveal">
+                <strong>The problem.</strong> Algorithms are taught as
+                pseudocode and big-O tables, so students memorize behavior
+                they've never actually seen.
+              </p>
+              <p class="reveal">
+                <strong>The calls I made.</strong> Instead of one polished demo,
+                I built a single consistent surface for the whole first-year CS
+                curriculum: pathfinding, sorting, and eight data structures
+                from stacks to AVL and splay trees, all sharing the same
+                visualize/reset/speed controls. Built with Next.js, React, and
+                TypeScript, with direct manipulation: you place the start, the
+                end, and the barriers yourself.
+              </p>
+              <p class="reveal">
+                <strong>What shipped.</strong> A live, public visualizer anyone
+                can use without an account or a setup step.
+              </p>
+            </div>
+
+            <div class="study-meta reveal">
+              <span>TypeScript · Next.js · React</span>
+              <span class="study-meta-links">
+                <a
+                  href="https://algorithmvisualization.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Live site ↗</a
+                >
+                <a
+                  href="https://github.com/seanp824/Algorithm-Visualizer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub ↗</a
+                >
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="study" aria-labelledby="study-2-title">
+          <div class="study-rail">
+            <span class="study-number" aria-hidden="true">02</span>
+          </div>
+          <div class="study-body">
+            <header class="study-head reveal">
+              <h3 id="study-2-title">PlayForge</h3>
+              <p class="study-deck">
+                A playbook designer for coaches: draw it, animate it, share it.
+              </p>
+            </header>
+
+            <a
+              class="study-media reveal-media"
+              href="https://playforgeplaybook.lovable.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="images/playforge-designer.png"
+                alt="PlayForge designer: a football field canvas with a player palette for offense, defense, and special teams"
+                loading="lazy"
+                width="1280"
+                height="800"
+              />
+              <span class="study-media-tag">Try it live</span>
+            </a>
+
+            <div class="study-narrative">
+              <p class="reveal">
+                <strong>The problem.</strong> Plays get drawn on whiteboards
+                and die in the locker room. A diagram on paper can't show
+                timing, and timing is the whole play. Coaches needed something
+                players could replay on the phone in their pocket.
+              </p>
+              <p class="reveal">
+                <strong>The calls I made.</strong> Animation is the product,
+                not a feature: a play is motion, so routes and formations
+                animate with controllable speed instead of sitting as static
+                arrows. I built one canvas model that serves football,
+                basketball, and soccer rather than three separate tools, and
+                kept it in the browser so it works on whatever device a coach
+                or player already has.
+              </p>
+              <p class="reveal">
+                <strong>What shipped.</strong> A live designer with sport
+                palettes, play animation, playbooks, and team sharing.
+              </p>
+            </div>
+
+            <div class="study-meta reveal">
+              <span>React · Canvas animation</span>
+              <a
+                href="https://playforgeplaybook.lovable.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Live site ↗</a
+              >
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 -->
+        <article class="study" aria-labelledby="study-3-title">
+          <div class="study-rail">
+            <span class="study-number" aria-hidden="true">03</span>
+          </div>
+          <div class="study-body">
+            <header class="study-head reveal">
+              <h3 id="study-3-title">Rubik's Cube Solver</h3>
+              <p class="study-deck">
+                A solver built from scratch, no solving library imported.
+              </p>
+            </header>
+
+            <a
+              class="study-media reveal-media"
+              href="https://github.com/seanp824/Rubik-s-Cube-Solver"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="images/rubiks.svg"
+                alt="Isometric illustration of a scrambled Rubik's cube above the move notation F R U R-prime U-prime F-prime"
+                loading="lazy"
+                width="1280"
+                height="720"
+              />
+              <span class="study-media-tag">View the code</span>
+            </a>
+
+            <div class="study-narrative">
+              <p class="reveal">
+                <strong>The problem.</strong> Existing solver libraries hand
+                you the answer and teach you nothing. I wanted to own the
+                whole pipeline: from a messy physical cube in your hands to a
+                move-by-move solution you can actually follow.
+              </p>
+              <p class="reveal">
+                <strong>The calls I made.</strong> I implemented the beginner's
+                method myself in Python instead of importing Kociemba. For
+                input I built two paths: type the
+                cube state manually, or scan each face with a webcam through
+                OpenCV. The model of the cube, the move logic, and the solving
+                stages are all hand-rolled.
+              </p>
+              <p class="reveal">
+                <strong>What shipped.</strong> A working solver on GitHub that
+                takes any scramble and produces the steps to solve it. I'm now
+                evolving it into a mobile app with camera scanning and a 3D
+                guided solve, taking the same engine from terminal to pocket.
+              </p>
+            </div>
+
+            <div class="study-meta reveal">
+              <span>Python · OpenCV</span>
+              <a
+                href="https://github.com/seanp824/Rubik-s-Cube-Solver"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub ↗</a
+              >
+            </div>
+          </div>
+        </article>
+
+        <!-- archive -->
+        <div class="work-archive reveal">
+          <span>More builds</span>
+          <nav aria-label="More projects">
+            <a
+              href="https://www.youtube.com/watch?v=pRQLgmHiOZQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Parking Spot Detector ↗</a
+            >
+            <a
+              href="https://github.com/seanp824/CourseScheduler"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Course Scheduler ↗</a
+            >
+            <a
+              href="https://github.com/seanp824/S-P-Predictor"
+              target="_blank"
+              rel="noopener noreferrer"
+              >S&amp;P 500 Predictor ↗</a
+            >
+          </nav>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="about" aria-labelledby="about-heading">
+        <div class="about-inner">
+          <h2 id="about-heading" class="reveal">About</h2>
+          <div class="about-prose">
+            <p class="reveal">
+              I'm a senior at USC pursuing Computer Science and Business
+              Administration, two degrees I picked because the interesting
+              problems live between them. Code answers "can we build it";
+              business answers "should we".
+            </p>
+            <p class="reveal">
+              I work hands-on across Python, C++, and the web stack
+              (JavaScript, HTML, CSS), with applied experience in computer
+              vision and machine learning. I'm proficient with AI as well,
+              from building with LLM APIs to putting agentic tools to work in
+              everyday development.
+            </p>
+            <p class="reveal">
+              Right now I'm looking for roles where I can own a problem from
+              user research to shipped software.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="contact-invite reveal">
+          Let's talk<span class="contact-period">.</span>
+        </h2>
+        <a class="contact-email reveal" href="mailto:seanpharbison@gmail.com"
+          >seanpharbison@gmail.com</a
+        >
+        <div class="contact-links reveal">
+          <a
+            href="https://github.com/seanp824"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub ↗</a
+          >
+          <a
+            href="http://linkedin.com/in/seanpharbison"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn ↗</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Sean Harbison · Los Angeles</span>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
