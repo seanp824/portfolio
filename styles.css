@@ -212,7 +212,7 @@ body.has-pointer .glow-cursor {
 
 .hero-portrait {
   position: absolute;
-  left: 39%;
+  left: 35%;
   top: 50%;
   width: clamp(10rem, 17vw, 15rem);
   margin: 0;
