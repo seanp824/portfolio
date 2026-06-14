@@ -82,7 +82,7 @@
           // The leading translate matches the CSS centering offset.
           heroPortrait.style.transform = `translate(-50%, -54%) translate3d(0, ${
             progress * 70
-          }px, 0) rotate(${-2 + progress * 2}deg)`;
+          }px, 0)`;
           heroPortrait.style.opacity = String(1 - progress * 0.9);
         }
       }

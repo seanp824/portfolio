@@ -216,7 +216,7 @@ body.has-pointer .glow-cursor {
   top: 50%;
   width: clamp(10rem, 17vw, 15rem);
   margin: 0;
-  transform: translate(-50%, -54%) rotate(-2deg);
+  transform: translate(-50%, -54%);
   will-change: transform;
 }
 
@@ -261,7 +261,6 @@ body.has-pointer .glow-cursor {
 
 .hero-line-indent {
   align-self: flex-end;
-  color: var(--accent);
 }
 
 .hero-foot {
